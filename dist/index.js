@@ -1,10 +1,13 @@
-'use strict';
+"use strict";
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-var _utils = require('./utils');
+var _utils = require("./utils");
 
-var defaultOptions = {
+const defaultOptions = {
   // input color options: hex, rgb or hsl
   inputFormat: 'hex',
   // number of color stops (cannot be less than colorArray.length)
@@ -13,11 +16,13 @@ var defaultOptions = {
   colorArray: ['#fff', '#000']
 };
 
-function gradstop(options) {
-  options = _extends({}, defaultOptions, options);
+var _default = options => {
+  options = { ...defaultOptions,
+    ...options
+  };
   (0, _utils.handleErrors)(options);
-  var stops = (0, _utils.getStops)(options);
+  const stops = (0, _utils.getStops)(options);
   return stops;
-}
+};
 
-module.exports = gradstop;
+exports.default = _default;

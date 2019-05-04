@@ -7,7 +7,8 @@
     "dist",
     "index.js",
     "README.md",
-    "gradient strip.png"
+    "gradient strip.png",
+    "gradstopUMD.js"
   ],
   "keywords": [
     "gradstop",
@@ -20,14 +21,16 @@
     "hsl"
   ],
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist gradstopUMD.js",
     "build": "babel src -d dist",
     "postbuild": "browserify index.js --standalone gradstop > gradstopUMD.js",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
     "postpublish": "git push origin master --follow-tags",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rimraf dist gradstopUMD.js",
+    "all": "npm run clean && npm run build && npm run postbuild && npm test"
   },
   "repository": {
     "type": "git",
@@ -40,33 +43,14 @@
   },
   "homepage": "https://github.com/Siddharth11/gradstop#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-jest": "^23.6.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2017": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "babelify": "^8.0.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@types/jest": "^24.0.12",
+    "babel-jest": "^24.7.1",
+    "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "jest": "^23.6.0",
-    "jest-cli": "^23.6.0",
-    "rimraf": "^2.6.2"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "env",
-            "stage-2"
-          ]
-        }
-      ]
-    ]
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.js?$": "babel-jest"
-    }
+    "jest": "^24.7.1",
+    "rimraf": "^2.6.3"
   }
 }

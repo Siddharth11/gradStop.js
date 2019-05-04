@@ -12,11 +12,9 @@ const defaultOptions = {
     colorArray: ['#fff', '#000']
 }
 
-function gradstop(options) {
+export  default (options) => {
   options = { ...defaultOptions, ...options };
   handleErrors(options);
   const stops =  getStops(options);
   return stops;
-}
-
-module.exports = gradstop;
+};
